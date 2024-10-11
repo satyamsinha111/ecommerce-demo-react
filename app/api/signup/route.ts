@@ -3,7 +3,7 @@ import User from '../../models/User';
 import connectToDatabase from '../../utils/mongodb';
 
 export async function POST(request:any) {
-  const { email, password } = await request.json();
+  const { email, password,fullname } = await request.json();
 
   // Connect to the database
   await connectToDatabase();
@@ -23,6 +23,7 @@ export async function POST(request:any) {
   const user = new User({
     email,
     password: hashedPassword,
+    fullname
   });
 
   await user.save();
